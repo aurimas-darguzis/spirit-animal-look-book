@@ -1,28 +1,28 @@
-import React, { PropTypes } from 'react';
-import { auth } from './firebase';
-import './CurrentUser.css';
+import React, { PropTypes } from 'react'
+import { auth } from './firebase'
+import './CurrentUser.css'
 
 const CurrentUser = ({ user }) => {
   return (
-    <div className="CurrentUser">
+    <div className='CurrentUser'>
       <img
-        className="CurrentUser--photo"
-        src={ user.photoURL }
-        alt={ user.displayName }
+        className='CurrentUser--photo'
+        src={user.photoURL}
+        alt={user.displayName}
       />
-      <div className="CurrentUser--identification">
-        <h3 className="CurrentUser--displayName">{ user.displayName }</h3>
-        <p className="CurrentUser--email">{ user.email }</p>
+      <div className='CurrentUser--identification'>
+        <h3 className='CurrentUser--displayName'>{ user.displayName }</h3>
+        <p className='CurrentUser--email'>{ user.email }</p>
         <button
-          className="CurrentUser--signout"
+          className='CurrentUser--signout'
           onClick={() => auth.signOut()}
         >
           Sign Out
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
 CurrentUser.propTypes = {
   user: PropTypes.shape({
@@ -31,6 +31,6 @@ CurrentUser.propTypes = {
     photoURL: PropTypes.string,
     uid: PropTypes.string.isRequired
   })
-};
+}
 
-export default CurrentUser;
+export default CurrentUser

@@ -1,18 +1,38 @@
-import React, { Component, PropTypes } from 'react';
-import FileInput from 'react-file-input';
-import { storage, database } from './firebase';
-import './ProfileCard.css';
+import React, { Component, PropTypes } from 'react'
+import FileInput from 'react-file-input'
+import { storage, database } from './firebase'
+import './ProfileCard.css'
 
 class ProfileCard extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  render() {
+  handleSubmit (event) {
+    const file = event.target.files[0]
+    console.log(file)
+  }
+
+  render () {
+    const { displayName, photoURL } = this.props.user
     return (
-      <article className="ProfileCard">
+      <article className='ProfileCard'>
+        <img
+          className='ProfileCard--photo'
+          src={photoURL}
+        />
+        <h3>{ displayName }</h3>
+        <FileInput
+          accept='.png, .gif, .jpeg'
+          placeholder='Select an image'
+          onChange={this.handleSubmit}
+        />
+        <button>
+          Upload Spirit Animal
+        </button>
       </article>
-    );
+    )
   }
 }
 
@@ -23,6 +43,6 @@ ProfileCard.propTypes = {
   imageURL: PropTypes.string,
   photoURL: PropTypes.string,
   uid: PropTypes.string
-};
+}
 
-export default ProfileCard;
+export default ProfileCard
